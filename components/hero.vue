@@ -5,7 +5,7 @@
     <div class="hero-content">
       <h1 class="hero-title" ref="titleRef">Villa Cielo</h1>
       <p class="hero-sub" ref="subRef">Refúgio arquitetônico entre o mar e o silêncio</p>
-      
+
       <!-- BOTÃO DE SCROLL -->
       <button class="scroll-down" @click="scrollToSobre">
         ↓ Ver mais
@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
