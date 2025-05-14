@@ -13,12 +13,12 @@
 import { ref, onMounted } from 'vue'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-const { $gsap } = useNuxtApp()
-$gsap.registerPlugin(ScrollTrigger)
-
 const sectionRef = ref(null)
 
 onMounted(() => {
+  const { $gsap } = useNuxtApp()
+  $gsap.registerPlugin(ScrollTrigger)
+
   $gsap.from(sectionRef.value, {
     scrollTrigger: {
       trigger: sectionRef.value,

@@ -16,21 +16,26 @@ import { ref, onMounted } from 'vue'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
-const { $gsap } = useNuxtApp()
-$gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
-
 const titleRef = ref(null)
 const subRef = ref(null)
 
+let $gsap
+
 const scrollToSobre = () => {
-  $gsap.to(window, {
-    scrollTo: '#sobre',
-    duration: 1.4,
-    ease: 'power2.out'
-  })
+  if ($gsap) {
+    $gsap.to(window, {
+      scrollTo: '#sobre',
+      duration: 1.4,
+      ease: 'power2.out'
+    })
+  }
 }
 
 onMounted(() => {
+  const nuxt = useNuxtApp()
+  $gsap = nuxt.$gsap
+  $gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+
   $gsap.from('.hero-bg', {
     scale: 1.1,
     opacity: 0,

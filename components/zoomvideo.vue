@@ -16,13 +16,13 @@
 import { ref, onMounted } from 'vue'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-const { $gsap } = useNuxtApp()
-$gsap.registerPlugin(ScrollTrigger)
-
 const wrapRef = ref(null)
 const videoRef = ref(null)
 
 onMounted(() => {
+  const { $gsap } = useNuxtApp()
+  $gsap.registerPlugin(ScrollTrigger)
+
   $gsap.fromTo(
     videoRef.value,
     {

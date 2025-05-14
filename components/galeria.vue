@@ -12,13 +12,14 @@
 import { ref, onMounted } from 'vue'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-const { $gsap } = useNuxtApp()
-$gsap.registerPlugin(ScrollTrigger)
-
 const wrapRef = ref(null)
 const containerRef = ref(null)
 
 onMounted(() => {
+  const nuxt = useNuxtApp()
+  const $gsap = nuxt.$gsap
+  $gsap.registerPlugin(ScrollTrigger)
+
   const container = containerRef.value
   const wrap = wrapRef.value
   const scrollLength = container.scrollWidth - wrap.offsetWidth

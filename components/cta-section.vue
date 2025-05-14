@@ -1,19 +1,6 @@
-<template>
-  <section class="sobre" id="sobre">
-    <div class="manifesto">
-      <p v-for="(linha, i) in linhas" :key="i" class="linha" :ref="el => refs[i] = el">
-        {{ linha }}
-      </p>
-    </div>
-  </section>
-</template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-
-const { $gsap } = useNuxtApp()
-$gsap.registerPlugin(ScrollTrigger)
 
 const linhas = [
   'Um refúgio arquitetônico entre o mar e o silêncio.',
@@ -25,6 +12,9 @@ const linhas = [
 const refs = []
 
 onMounted(() => {
+  const { $gsap } = useNuxtApp() // ISSO FICA AQUI DENTRO
+  $gsap.registerPlugin(ScrollTrigger)
+
   refs.forEach((el, i) => {
     $gsap.fromTo(
       el,
@@ -45,27 +35,3 @@ onMounted(() => {
   })
 })
 </script>
-
-<style scoped>
-.sobre {
-  background: #111;
-  color: #fff;
-  padding: 10rem 2rem;
-  overflow: hidden;
-  width: 100%;
-}
-
-.manifesto {
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.linha {
-  font-size: 2.6rem;
-  font-weight: 300;
-  line-height: 1.4;
-  margin: 1.5rem 0;
-  opacity: 0;
-}
-</style>
