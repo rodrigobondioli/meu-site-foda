@@ -6,7 +6,7 @@
     <p
       class="scroll-fade max-w-5xl text-[#151515] text-[clamp(2.5rem,5vw,4.5rem)] leading-tight text-center font-light"
     >
-      Um projeto arquitetônico único, com 5 suítes, 850m² e vista 180º para o mar.
+      AAAAAUm projeto arquitetônico único, com 5 suítes, 850m² e vista 180º para o mar.
       Localizada no litoral de SP, a Villa Cielo oferece acesso exclusivo à praia,
       design autoral e uma experiência de luxo incomparável.
     </p>
