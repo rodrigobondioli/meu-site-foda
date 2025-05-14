@@ -1,8 +1,9 @@
 <template>
-  <section class="sobre" id="sobre">
-    <div class="manifesto">
-      <p v-for="(linha, i) in linhas" :key="i" class="linha" :ref="el => refs[i] = el">
-        {{ linha }}
+  <section class="sobre" id="sobre" ref="sectionRef">
+    <div class="container">
+      <h2 class="sobre-title">Sobre a Villa Cielo</h2>
+      <p class="sobre-text">
+        Um projeto arquitetônico único, com 5 suítes, 850m² e vista 180º para o mar. Localizada no litoral de SP, a Villa Cielo oferece acesso exclusivo à praia, design autoral e uma experiência de luxo incomparável.
       </p>
     </div>
   </section>
@@ -10,62 +11,49 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
+const { $gsap } = useNuxtApp()
+$gsap.registerPlugin(ScrollTrigger)
 
-const linhas = [
-  'Um refúgio arquitetônico entre o mar e o silêncio.',
-  '850m² pensados pra desacelerar o tempo.',
-  '5 suítes, vista 180º e o som do vento como trilha.',
-  'Bem-vindo à Villa Cielo.'
-]
-
-const refs = []
+const sectionRef = ref(null)
 
 onMounted(() => {
-  refs.forEach((el, i) => {
-    gsap.fromTo(
-      el,
-      { opacity: 0, y: 30 },
-      {
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          once: true
-        },
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        delay: i * 0.05
-      }
-    )
+  $gsap.from(sectionRef.value, {
+    scrollTrigger: {
+      trigger: sectionRef.value,
+      start: 'top 80%',
+    },
+    opacity: 0,
+    y: 50,
+    duration: 1.2,
+    ease: 'power4.out'
   })
 })
 </script>
 
 <style scoped>
 .sobre {
-  background: #111;
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  background-color: #151515;
   color: #fff;
-  padding: 10rem 2rem;
-  overflow: hidden;
-  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.manifesto {
-  max-width: 1200px;
+.sobre-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.sobre-text {
+  font-size: 1.2rem;
+  max-width: 800px;
   margin: 0 auto;
-  overflow: hidden;
-}
-
-.linha {
-  font-size: 2.6rem;
-  font-weight: 300;
-  line-height: 1.4;
-  margin: 1.5rem 0;
-  opacity: 0;
+  line-height: 1.6;
+  color: #ddd;
 }
 </style>
