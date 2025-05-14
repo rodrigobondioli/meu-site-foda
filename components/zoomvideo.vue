@@ -14,24 +14,24 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
+const { $gsap } = useNuxtApp()
+$gsap.registerPlugin(ScrollTrigger)
 
 const wrapRef = ref(null)
 const videoRef = ref(null)
 
 onMounted(() => {
-  gsap.fromTo(
+  $gsap.fromTo(
     videoRef.value,
     {
       width: '60vw',
-      height: '33.75vw', // 16:9 proporcional (60 * 0.5625)
+      height: '33.75vw'
     },
     {
       width: '100vw',
-      height: '56.25vw', // 100vw * 0.5625
+      height: '56.25vw',
       ease: 'power2.out',
       scrollTrigger: {
         trigger: wrapRef.value,
@@ -39,7 +39,7 @@ onMounted(() => {
         end: 'bottom top',
         scrub: true,
         pin: true,
-        anticipatePin: 1,
+        anticipatePin: 1
       }
     }
   )
