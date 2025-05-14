@@ -1,10 +1,10 @@
 <template>
   <section
     id="sobre"
-    class="min-h-screen flex items-center justify-center px-6"
+    class="min-h-screen px-6 pt-32 pb-32 flex items-center justify-center bg-white"
   >
     <p
-      class="scroll-fade max-w-4xl text-[#151515] text-5xl md:text-6xl leading-snug md:leading-tight text-center"
+      class="scroll-fade max-w-5xl text-[#151515] text-[clamp(2.5rem,5vw,4.5rem)] leading-tight text-center font-light"
     >
       Um projeto arquitetônico único, com 5 suítes, 850m² e vista 180º para o mar.
       Localizada no litoral de SP, a Villa Cielo oferece acesso exclusivo à praia,
@@ -32,7 +32,7 @@ onMounted(() => {
 <style scoped>
 .scroll-fade {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(50px);
   transition: all 0.8s ease-out;
 }
 .scroll-fade.active {
