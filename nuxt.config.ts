@@ -1,7 +1,10 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  css: [
+    '@/assets/css/tailwind.css', // ✅ importa o Tailwind primeiro
+    '@/assets/css/global.css',   // ✅ seu CSS personalizado depois
+  ],
+  modules: ['@nuxtjs/tailwindcss'],
+  plugins: ['~/plugins/gsap.client.ts'],
+  ssr: true,
   devtools: { enabled: true },
-  css: ['@/assets/css/global.css'],
-  plugins: ['~/plugins/gsap.client.ts'], // 👈 ESSE AQUI
-  ssr: true
 })
