@@ -6,28 +6,24 @@
       <h1 class="hero-title" ref="titleRef">Villa Cielo</h1>
       <p class="hero-sub" ref="subRef">Refúgio arquitetônico entre o mar e o silêncio</p>
 
-      <!-- BOTÃO DE SCROLL -->
-      <button class="scroll-down" @click="scrollToSobre">
-        ↓ Ver mais
-      </button>
+      <button class="scroll-down" @click="scrollToSobre">↓ Ver mais</button>
     </div>
   </section>
 </template>
 
-
 <script setup>
 import { ref, onMounted } from 'vue'
-import { gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+const { $gsap } = useNuxtApp()
+$gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 const titleRef = ref(null)
 const subRef = ref(null)
 
 const scrollToSobre = () => {
-  gsap.to(window, {
+  $gsap.to(window, {
     scrollTo: '#sobre',
     duration: 1.4,
     ease: 'power2.out'
@@ -35,14 +31,14 @@ const scrollToSobre = () => {
 }
 
 onMounted(() => {
-  gsap.from('.hero-bg', {
+  $gsap.from('.hero-bg', {
     scale: 1.1,
     opacity: 0,
     duration: 1.8,
     ease: 'power2.out'
   })
 
-  gsap.to(titleRef.value, {
+  $gsap.to(titleRef.value, {
     scrollTrigger: {
       trigger: titleRef.value,
       start: 'top top',
@@ -52,7 +48,7 @@ onMounted(() => {
     opacity: 0.6
   })
 
-  gsap.to(subRef.value, {
+  $gsap.to(subRef.value, {
     scrollTrigger: {
       trigger: subRef.value,
       start: 'top top',
@@ -109,19 +105,12 @@ onMounted(() => {
 }
 
 .scroll-down {
-  margin-top: 3rem;
+  margin-top: 2rem;
   background: none;
   border: 2px solid #fff;
-  padding: 0.75rem 1.5rem;
   color: #fff;
-  font-size: 1rem;
-  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.scroll-down:hover {
-  background: #fff;
-  color: #151515;
+  font-size: 1.2rem;
 }
 </style>
