@@ -1,5 +1,5 @@
 import { defineNuxtPlugin } from '#app'
-import { gsap } from 'gsap'
+const { $gsap } = useNuxtApp()
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
 

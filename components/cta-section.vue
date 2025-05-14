@@ -10,10 +10,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
+const { $gsap } = useNuxtApp()
+$gsap.registerPlugin(ScrollTrigger)
 
 const linhas = [
   'Um refúgio arquitetônico entre o mar e o silêncio.',
@@ -26,7 +26,7 @@ const refs = []
 
 onMounted(() => {
   refs.forEach((el, i) => {
-    gsap.fromTo(
+    $gsap.fromTo(
       el,
       { opacity: 0, y: 30 },
       {
