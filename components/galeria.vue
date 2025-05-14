@@ -10,10 +10,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
+const { $gsap } = useNuxtApp()
+$gsap.registerPlugin(ScrollTrigger)
 
 const wrapRef = ref(null)
 const containerRef = ref(null)
@@ -21,21 +21,18 @@ const containerRef = ref(null)
 onMounted(() => {
   const container = containerRef.value
   const wrap = wrapRef.value
-
   const scrollLength = container.scrollWidth - wrap.offsetWidth
 
-  ScrollTrigger.create({
-    trigger: wrap,
-    start: 'top top',
-    end: scrollLength,
-    scrub: true,
-    pin: true,
-    anticipatePin: 1,
-    onUpdate: self => {
-      const progress = self.progress
-      gsap.set(container, {
-        x: -scrollLength * progress
-      })
+  $gsap.to(container, {
+    x: () => -scrollLength,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: wrap,
+      start: 'top top',
+      end: () => `+=${scrollLength}`,
+      scrub: true,
+      pin: true,
+      anticipatePin: 1
     }
   })
 })
@@ -46,8 +43,6 @@ onMounted(() => {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  width: 100%;
-  max-width: 100vw;
 }
 
 .galeria-container {
